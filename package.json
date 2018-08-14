@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/juliantellez/drone-ci-pipeline/issues"
   },
-  "homepage": "https://github.com/juliantellez/drone-ci-pipeline#readme"
+  "homepage": "https://github.com/juliantellez/drone-ci-pipeline#readme",
+  "dependencies": {
+    "ramda": "^0.25.0"
+  }
 }
