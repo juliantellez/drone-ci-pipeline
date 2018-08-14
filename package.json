@@ -1,0 +1,19 @@
+{
+  "name": "y",
+  "version": "0.0.0",
+  "description": "pipeline-example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"TESTING...\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juliantellez/drone-ci-pipeline.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juliantellez/drone-ci-pipeline/issues"
+  },
+  "homepage": "https://github.com/juliantellez/drone-ci-pipeline#readme"
+}
