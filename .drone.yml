@@ -3,4 +3,4 @@ pipeline:
     image: node:latest
     commands:
       - npm i
-      - npm run test
+      - npm run build
