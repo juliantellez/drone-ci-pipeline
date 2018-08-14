@@ -4,7 +4,8 @@
   "description": "pipeline-example",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"TESTING...\""
+    "test": "echo \"TESTING...\"",
+    "build": "echo \"BUILDING...\""
   },
   "repository": {
     "type": "git",
