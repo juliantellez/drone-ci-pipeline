@@ -1,8 +1,10 @@
 pipeline:
   build:
-    image: node:latest
+    image: node:8.10
     commands:
-      - npm i
+      - npm install
       - npm run test
       - npm run build
-
+    when:
+      event:
+        - pull_request
