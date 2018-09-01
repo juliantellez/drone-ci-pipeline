@@ -1,25 +1,11 @@
 pipeline:
-  Install:
+  PullRequest:
     image: node:8.10
     commands:
       - npm install
-    when:
-      event:
-        - push
-
-  Lint:
-    image: node:8.10
-    commands:
       - npm run lint
-    when:
-      event:
-        - push
-
-  Test:
-    image: node:8.10
-    commands:
       - npm run test
     when:
       event:
-        - push
+        - pull_request
 
