@@ -4,6 +4,7 @@
   "description": "pipeline-example",
   "main": "index.js",
   "scripts": {
+    "lint": "echo \"LINTING...\"",  
     "test": "echo \"TESTING...\"",
     "build": "echo \"BUILDING...\""
   },

@@ -1,5 +1,5 @@
 pipeline:
-  install:
+  Install:
     image: node:8.10
     commands:
       - npm install
@@ -7,7 +7,7 @@ pipeline:
       event:
         - push
 
-  lint:
+  Lint:
     image: node:8.10
     commands:
       - npm run lint
@@ -15,7 +15,7 @@ pipeline:
       event:
         - push
 
-  test:
+  Test:
     image: node:8.10
     commands:
       - npm run test
