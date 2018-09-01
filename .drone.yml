@@ -2,6 +2,9 @@ clone:
   git:
     image: plugins/git
     depth: 1
+    when:
+      event:
+        - pull_request
 
 pipeline:
   PullRequest:
