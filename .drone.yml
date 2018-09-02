@@ -33,11 +33,11 @@ pipeline:
     image: plugins/s3
     bucket: drone-ci-test
     region: eu-west-1
-    access_key: [aws_access_key]
-    secret_key: [aws_secret_key]
+    access_key: $aws_access_key
+    secret_key: $aws_secret_key
     source: dist/**/*
     target: drone-cli-test/target/dev
-    strip_prefix: true
+    strip_prefix: dist/
     when:
       event:
         - pull_request
