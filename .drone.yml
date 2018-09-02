@@ -1,10 +1,29 @@
+clone:
+  git:
+    image: plugins/git
+    depth: 1
+
 pipeline:
-  build:
+  PullRequest:
     image: node:8.10
     commands:
       - npm install
+      - npm run lint
       - npm run test
-      - npm run build
     when:
       event:
         - pull_request
+
+  MergeBranch:
+    image: node:8.10
+    commands:
+      - npm install
+      - npm run lint
+      - npm run test
+      - npm run build
+    when:
+      branch:
+        - master
+        - develop
+      event:
+        - push
