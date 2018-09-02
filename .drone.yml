@@ -37,6 +37,7 @@ pipeline:
     secret_key: [aws_secret_key]
     source: dist/**/*
     target: drone-cli-test/target/dev
+    strip_prefix: true
     when:
       event:
         - pull_request
