@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "echo \"LINTING...\"",
     "test": "echo \"TESTING...\"",
-    "build": "echo \"BUILDING...\""
+    "build": "sh scripts/build.sh"
   },
   "repository": {
     "type": "git",
