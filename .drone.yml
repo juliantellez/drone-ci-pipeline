@@ -34,7 +34,7 @@ pipeline:
     access_key: [aws_access_key]
     secret_key: [aws_secret_key]
     source: dist/**/*
-    target: /target/dev
+    target: drone-cli-test/target/dev
     when:
       branch:
         - develop
@@ -47,7 +47,7 @@ pipeline:
     access_key: [aws_access_key]
     secret_key: [aws_secret_key]
     source: dist/**/*
-    target: /target/prod
+    target: drone-cli-test/target/prod
     when:
       branch:
         - master
