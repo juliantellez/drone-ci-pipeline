@@ -37,9 +37,9 @@ pipeline:
     source: dist/**/*
     strip_prefix: dist/
     secrets:
-        - target: access_key
+        - target: key
           source: aws_access_key
-        - target: secret_key
+        - target: secret
           source: aws_secret_key  
     when:
       event:
