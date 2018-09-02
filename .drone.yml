@@ -1,10 +1,10 @@
 clone:
-  git:
+  CLONE_REPO:
     image: plugins/git
     depth: 1
 
 pipeline:
-  PullRequest:
+  TEST_PULL_REQUEST:
     image: node:8.10
     commands:
       - npm install
@@ -14,7 +14,7 @@ pipeline:
       event:
         - pull_request
 
-  MergeBranch:
+  BUILD_BRANCH:
     image: node:8.10
     commands:
       - npm install
