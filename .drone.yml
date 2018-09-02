@@ -10,6 +10,7 @@ pipeline:
       - npm install
       - npm run lint
       - npm run test
+      - npm run build
     when:
       event:
         - pull_request
@@ -31,19 +32,19 @@ pipeline:
   DEPLOY DEVELOPMENT:
     image: plugins/s3
     bucket: drone-ci-test
+    region: eu-west-1
     access_key: [aws_access_key]
     secret_key: [aws_secret_key]
     source: dist/**/*
     target: drone-cli-test/target/dev
     when:
-      branch:
-        - develop
       event:
-        - push
+        - pull_request
 
   DEPLOY PRODUCTION:
     image: plugins/s3
     bucket: drone-ci-test
+    region: eu-west-1
     access_key: [aws_access_key]
     secret_key: [aws_secret_key]
     source: dist/**/*
