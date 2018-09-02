@@ -30,17 +30,13 @@ pipeline:
         - push
 
   DEPLOY DEVELOPMENT:
-    image: plugins/s3
+    image: plugins/s3:1
     bucket: drone-ci-test
     region: eu-west-1
     target: drone-cli-test/target/dev
     source: dist/**/*
     strip_prefix: dist/
-    secrets:
-        - target: key
-          source: aws_access_key
-        - target: secret
-          source: aws_secret_key  
+    secrets: [ aws_access_key_id, aws_secret_access_key ]
     when:
       event:
         - pull_request
