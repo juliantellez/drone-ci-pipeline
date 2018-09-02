@@ -38,6 +38,9 @@ pipeline:
     source: dist/**/*
     target: drone-cli-test/target/dev
     strip_prefix: dist/
+    commands:
+      - echo $AWS_ACCESS_KEY
+      - echo $AWS_SECRET_KEY
     when:
       event:
         - pull_request
