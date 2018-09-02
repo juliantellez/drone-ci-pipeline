@@ -1,10 +1,10 @@
 clone:
-  CLONE_REPO:
+  CLONE REPO:
     image: plugins/git
     depth: 1
 
 pipeline:
-  TEST_PULL_REQUEST:
+  TEST PULL REQUEST:
     image: node:8.10
     commands:
       - npm install
@@ -14,7 +14,7 @@ pipeline:
       event:
         - pull_request
 
-  BUILD_BRANCH:
+  BUILD BRANCH:
     image: node:8.10
     commands:
       - npm install
@@ -25,5 +25,31 @@ pipeline:
       branch:
         - master
         - develop
+      event:
+        - push
+
+  DEPLOY DEVELOPMENT:
+    image: plugins/s3
+    bucket: drone-ci-test
+    access_key: [aws_access_key]
+    secret_key: [aws_secret_key]
+    source: dist/**/*
+    target: /target/dev
+    when:
+      branch:
+        - develop
+      event:
+        - push
+
+  DEPLOY PRODUCTION:
+    image: plugins/s3
+    bucket: drone-ci-test
+    access_key: [aws_access_key]
+    secret_key: [aws_secret_key]
+    source: dist/**/*
+    target: /target/prod
+    when:
+      branch:
+        - master
       event:
         - push
