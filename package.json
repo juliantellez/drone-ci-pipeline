@@ -20,5 +20,8 @@
   "homepage": "https://github.com/juliantellez/drone-ci-pipeline#readme",
   "dependencies": {
     "ramda": "^0.25.0"
+  },
+  "devDependencies": {
+    "semantic-release": "^15.9.15"
   }
 }
