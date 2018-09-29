@@ -1,1 +1,7 @@
 dist
+
+node_modules
+
+id_rsa*
+
+test.sh

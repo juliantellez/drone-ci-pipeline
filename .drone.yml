@@ -4,29 +4,39 @@ clone:
     depth: 1
 
 pipeline:
-  INSTALL DEPENDENCIES:
-    image: node:8.10
-    commands:
-      - npm install
+  # INSTALL DEPENDENCIES:
+  #   image: node:8.10
+  #   commands:
+  #     - npm install
 
-  LINT:
-    image: node:8.10
-    commands:
-      - npm run lint
+  # LINT:
+  #   image: node:8.10
+  #   commands:
+  #     - npm run lint
 
-  UNIT TEST:
-    image: node:8.10
-    commands:
-      - npm run test
+  # UNIT TEST:
+  #   image: node:8.10
+  #   commands:
+  #     - npm run test
 
-  BUILD:
+  # BUILD:
+  #   image: node:8.10
+  #   commands:
+  #     - npm run build
+
+  GITHUB ACCESS:
     image: node:8.10
+    environment:
+      - ID_RSA=$GITHUB_SSH_KEY
     commands:
-      - npm run build
+      - sh ./scripts/github-access.sh
 
   PUBLISH:
     image: node:8.10
+    environment:
+      - ID_RSA=$GITHUB_SSH_KEY
     commands:
+      - sh ./scripts/github-access.sh
       - sh ./scripts/publish.sh $DRONE_COMMIT_MESSAGE
 
     when:
