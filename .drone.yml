@@ -4,27 +4,48 @@ clone:
     depth: 1
 
 pipeline:
-  TEST PULL REQUEST:
+  INSTALL DEPENDENCIES:
     image: node:8.10
     commands:
       - npm install
-      - npm run lint
-      - npm run test
-      - npm run build
-    when:
-      event:
-        - pull_request
 
-  BUILD BRANCH:
+  LINT:
     image: node:8.10
     commands:
-      - npm install
       - npm run lint
+
+  UNIT TEST:
+    image: node:8.10
+    commands:
       - npm run test
+
+  BUILD:
+    image: node:8.10
+    commands:
       - npm run build
+
+  PUBLISH:
+  image: node:8.10
+    commands:
+      # SEMVER
+      - SEMVER=$(echo ${DRONE_COMMIT_MESSAGE} | awk 'match(tolower($0),/(minor|major)/) {print substr(tolower($0),RSTART,RLENGTH)}')
+      - if [ $SEMVER ]; then
+      -   RELEASE_VERSION=$SEMVER; else
+      -   RELEASE_VERSION=patch
+      - fi
+
+      # PUBLISH
+      - npm version $RELEASE_VERSION -m "[CI SKIP] Publish player v%s"
+
+            # UPDATE REMOTE
+      - git config --global push.default simple
+      - git config user.email "bot@djuliantellez.com"
+      - git config user.name "[ PLAYBACK BOT ] DAZN"
+
+      - git push origin master --no-verify
+      - git push origin --tags --no-verify
+
     when:
-      branch:
-        - master
-        - develop
-      event:
-        - push
+      branch: [ master ]
+      event: [ push ]
+
