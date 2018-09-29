@@ -4,27 +4,32 @@ clone:
     depth: 1
 
 pipeline:
-  TEST PULL REQUEST:
+  INSTALL DEPENDENCIES:
     image: node:8.10
     commands:
       - npm install
-      - npm run lint
-      - npm run test
-      - npm run build
-    when:
-      event:
-        - pull_request
 
-  BUILD BRANCH:
+  LINT:
     image: node:8.10
     commands:
-      - npm install
       - npm run lint
+
+  UNIT TEST:
+    image: node:8.10
+    commands:
       - npm run test
+
+  BUILD:
+    image: node:8.10
+    commands:
       - npm run build
+
+  PUBLISH:
+    image: node:8.10
+    commands:
+      - sh ./scripts/publish.sh $DRONE_COMMIT_MESSAGE
+
     when:
-      branch:
-        - master
-        - develop
-      event:
-        - push
+      branch: [ master ]
+      event: [ push ]
+
