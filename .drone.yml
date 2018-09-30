@@ -29,19 +29,31 @@ pipeline:
     environment:
       - ID_RSA=$GITHUB_SSH_KEY
     commands:
-      - sh ./scripts/github-access.sh
-    secrets: [ github_ssh_key ]
-
-  PUBLISH:
-    image: node:8.10
-    environment:
-      - ID_RSA=$GITHUB_SSH_KEY
-    commands:
-      - sh ./scripts/github-access.sh
+      # - sh ./scripts/github-access.sh
+      - mkdir -p ~/.ssh
+      - touch ~/.ssh/known_hosts
+      - ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - eval "$(ssh-agent -s)"
+      - echo "StrictHostKeyChecking no" >> /etc/ssh/ssh_config
+      - echo $GITHUB_SSH_KEY | base64 -d > ~/.ssh/id_rsa
+      - chmod 600 ~/.ssh/id_rsa
+      - git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+      - git config --global push.default simple
+      - git config --global user.email "juliantellezmendez@gmail.com"
+      - git config --global user.name "Julian Tellez"
       - sh ./scripts/publish.sh $DRONE_COMMIT_MESSAGE
     secrets: [ github_ssh_key ]
 
-    when:
-      branch: [ master ]
-      event: [ push ]
+  # PUBLISH:
+  #   image: node:8.10
+  #   environment:
+  #     - ID_RSA=$GITHUB_SSH_KEY
+  #   commands:
+  #     - sh ./scripts/github-access.sh
+  #     - sh ./scripts/publish.sh $DRONE_COMMIT_MESSAGE
+  #   secrets: [ github_ssh_key ]
+
+  #   when:
+  #     branch: [ master ]
+  #     event: [ push ]
 
