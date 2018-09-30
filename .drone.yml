@@ -24,12 +24,13 @@ pipeline:
   #   commands:
   #     - npm run build
 
-  GITHUB ACCESS:
+  SSH GITHUB ACCESS:
     image: node:8.10
     environment:
       - ID_RSA=$GITHUB_SSH_KEY
     commands:
       - sh ./scripts/github-access.sh
+    secrets: [ github_ssh_key ]
 
   PUBLISH:
     image: node:8.10
@@ -38,6 +39,7 @@ pipeline:
     commands:
       - sh ./scripts/github-access.sh
       - sh ./scripts/publish.sh $DRONE_COMMIT_MESSAGE
+    secrets: [ github_ssh_key ]
 
     when:
       branch: [ master ]
