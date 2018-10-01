@@ -24,8 +24,8 @@ git config --global user.name "Julian Tellez"
 
 ssh-keygen -y -e -f ~/.ssh/id_rsa
 
-echo "\n\n Verify server: \n\n"
-ssh -vT git@github.com
+# echo "\n\n Verify server: \n\n"
+# ssh -vT git@github.com
 
-echo "\n\n Verify user: \n\n"
-ssh -T git@github.com
+# echo "\n\n Verify user: \n\n"
+# ssh -T git@github.com
