@@ -1,6 +1,6 @@
 {
   "name": "drone-ci-spike",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "pipeline-example",
   "main": "index.js",
   "scripts": {
