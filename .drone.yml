@@ -24,16 +24,16 @@ pipeline:
   #   commands:
   #     - npm run build
 
-  publish:
-    image: node:8.10
-    secrets: [github_token]
-    commands:
-      - "git config url.https://${GITHUB_TOKEN}@github.com/.insteadOf ssh://git@github.com/"
-      - git config user.email "julian.tellez@dazn.com"
-      - git config user.name "Julian Tellez"
-      - git config --global push.default simple
-      - npm version patch -m "[ci skip] Publish v%s" --no-git-tag-version
-      - git push origin master
+  # publish:
+  #   image: node:8.10
+  #   secrets: [github_token]
+  #   commands:
+  #     - "git config url.https://${GITHUB_TOKEN}@github.com/.insteadOf ssh://git@github.com/"
+  #     - git config user.email "julian.tellez@dazn.com"
+  #     - git config user.name "Julian Tellez"
+  #     - git config --global push.default simple
+  #     - npm version patch -m "[ci skip] Publish v%s" --no-git-tag-version
+  #     - git push origin master
 
   SSH GITHUB ACCESS:
     image: node:8.10
