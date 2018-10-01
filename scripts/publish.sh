@@ -14,6 +14,7 @@ echo "Release : ${RELEASE_VERSION}"
 
 # PUBLISH
 npm version $RELEASE_VERSION -m "[CI SKIP] Publish v%s"
+npm publish
 
 git push origin master --no-verify
 git push origin --tags --no-verify
