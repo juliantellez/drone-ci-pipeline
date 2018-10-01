@@ -4,51 +4,38 @@ clone:
     depth: 1
 
 pipeline:
-  # INSTALL DEPENDENCIES:
-  #   image: node:8.10
-  #   commands:
-  #     - npm install
+  INSTALL DEPENDENCIES:
+    image: node:8.10
+    commands:
+      - npm install
 
-  # LINT:
-  #   image: node:8.10
-  #   commands:
-  #     - npm run lint
+  LINT:
+    image: node:8.10
+    commands:
+      - npm run lint
 
-  # UNIT TEST:
-  #   image: node:8.10
-  #   commands:
-  #     - npm run test
+  UNIT TEST:
+    image: node:8.10
+    commands:
+      - npm run test
 
-  # BUILD:
-  #   image: node:8.10
-  #   commands:
-  #     - npm run build
+  NPM TOKEN:
+    image: node:8.10
+    commands:
+      - sh ./scripts/npm-token.sh $NPM_TOKEN
+    secrets: [ npm_token ]
 
-  # publish:
-  #   image: node:8.10
-  #   secrets: [github_token]
-  #   commands:
-  #     - "git config url.https://${GITHUB_TOKEN}@github.com/.insteadOf ssh://git@github.com/"
-  #     - git config user.email "julian.tellez@dazn.com"
-  #     - git config user.name "Julian Tellez"
-  #     - git config --global push.default simple
-  #     - npm version patch -m "[ci skip] Publish v%s" --no-git-tag-version
-  #     - git push origin master
-
-  SSH GITHUB ACCESS:
+  PUBLISH:
     image: node:8.10
     commands:
       - ID_RSA=$GITHUB_SSH_KEY
       - export ID_RSA
       - sh ./scripts/github-access.sh
-    secrets: [ github_ssh_key ]
-
-  PUBLISH:
-    image: node:8.10
-    commands:
+      - sh ./scripts/npm-token.sh $NPM_TOKEN
       - sh ./scripts/publish.sh $DRONE_COMMIT_MESSAGE
+    secrets: [ github_ssh_key, npm_token ]
 
-  #   when:
-  #     branch: [ master ]
-  #     event: [ push ]
+    when:
+      branch: [ master ]
+      event: [ push ]
 
