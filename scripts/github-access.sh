@@ -19,10 +19,11 @@ ssh-keyscan github.com >> ~/.ssh/known_hosts
 git config --global url.ssh://git@github.com/.insteadOf https://github.com/
 
 git config --global push.default simple
-git config --global user.email "juliantellezmendez@gmail.com"
-git config --global user.name "Julian Tellez"
+git config --global user.email "bot@juliantellez.com"
+git config --global user.name "[ BOT ] Julian Tellez"
 
-ssh-keygen -y -e -f ~/.ssh/id_rsa
+# DEBUG
+# ssh-keygen -y -e -f ~/.ssh/id_rsa
 
 # echo "\n\n Verify server: \n\n"
 # ssh -vT git@github.com
