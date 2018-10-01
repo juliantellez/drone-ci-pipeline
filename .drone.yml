@@ -27,9 +27,6 @@ pipeline:
   publish:
     image: node:8.10
     secrets: [github_token]
-    when:
-      event: push
-      branch: master
     commands:
       - "git config --global url.https://${GITHUB_TOKEN}@github.com/.insteadOf ssh://git@github.com/"
       - git config user.email "julian.tellez@dazn.com"
