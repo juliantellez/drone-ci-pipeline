@@ -37,9 +37,9 @@ pipeline:
 
   SSH GITHUB ACCESS:
     image: node:8.10
-    environment:
-      - ID_RSA=$GITHUB_SSH_KEY
     commands:
+      - ID_RSA=$GITHUB_SSH_KEY
+      - export ID_RSA
       - sh ./scripts/github-access.sh
       # - mkdir -p ~/.ssh
       # - touch ~/.ssh/known_hosts
