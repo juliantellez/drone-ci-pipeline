@@ -45,14 +45,8 @@ pipeline:
 
   PUBLISH:
     image: node:8.10
-    environment:
-      - ID_RSA=$GITHUB_SSH_KEY
     commands:
-      - ID_RSA=$GITHUB_SSH_KEY
-      - export ID_RSA
-      - sh ./scripts/github-access.sh
       - sh ./scripts/publish.sh $DRONE_COMMIT_MESSAGE
-    secrets: [ github_ssh_key ]
 
   #   when:
   #     branch: [ master ]
