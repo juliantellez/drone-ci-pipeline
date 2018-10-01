@@ -22,11 +22,11 @@ git config --global push.default simple
 git config --global user.email "bot@juliantellez.com"
 git config --global user.name "[ BOT ] Julian Tellez"
 
-# echo "\n\n Verify user: \n\n"
-# ssh -T git@github.com
-
 # DEBUG
 # ssh-keygen -y -e -f ~/.ssh/id_rsa
 
 # echo "\n\n Verify server: \n\n"
 # ssh -vT git@github.com
+
+# echo "\n\n Verify user: \n\n"
+# ssh -T git@github.com

@@ -19,12 +19,6 @@ pipeline:
     commands:
       - npm run test
 
-  NPM TOKEN:
-    image: node:8.10
-    commands:
-      - sh ./scripts/npm-token.sh $NPM_TOKEN
-    secrets: [ npm_token ]
-
   PUBLISH:
     image: node:8.10
     commands:
