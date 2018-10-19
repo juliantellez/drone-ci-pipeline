@@ -40,10 +40,12 @@ pipeline:
   NOTIFY PULL REQUEST TO TEAMS:
     group: notification
     image: globx/drone-plugin-teams:linux-amd64-build-1
+    secrets: [ teams_webhook ]
+    message_title: "a basdf"
+    message_success: "b dfgsdfg"
+    message_failure: "c asdgsdfg"
     link_text: "Pull Request"
     link_url: "https://github.com/${DRONE_REPO}/pull/${DRONE_PULL_REQUEST}"
-    secrets: [ teams_webhook ]
     when:
       status: [ success, failure ]
       event: [ pull_request ]
-
