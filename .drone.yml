@@ -42,11 +42,11 @@ pipeline:
     image: globx/drone-plugin-teams:linux-amd64-build-1
     secrets: [ teams_webhook ]
     message_title: >
-      "Repo: ${DRONE_REPO_NAME}"
+      [ ${DRONE_REPO_NAME} ]
     message_success: >
-      "Pull Request ${DRONE_COMMIT_MESSAGE} succeeded"
+      ${DRONE_BRANCH} Sandbox: has been updated
     message_failure: >
-      "Pull Request ${DRONE_COMMIT_MESSAGE} has failed"
+      ${DRONE_BRANCH} Sandbox: has failed to update
     link_text: "Pull Request"
     link_url: "https://github.com/${DRONE_REPO}/pull/${DRONE_PULL_REQUEST}"
     when:
