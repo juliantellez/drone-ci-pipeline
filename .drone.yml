@@ -47,3 +47,4 @@ pipeline:
     when:
       status: [ success, failure ]
       event: [ pull_request ]
+
