@@ -41,7 +41,6 @@ pipeline:
     group: notification
     image: globx/drone-plugin-teams:linux-amd64-build-1
     secrets: [ teams_webhook ]
-    message_success: "${DRONE_COMMIT_MESSAGE} succeeded"
     message_failure: "${DRONE_COMMIT_MESSAGE} has failed"
     link_text: "Pull Request"
     link_url: "https://github.com/${DRONE_REPO}/pull/${DRONE_PULL_REQUEST}"
